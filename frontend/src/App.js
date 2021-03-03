@@ -1,12 +1,7 @@
-import './App.css';
+import React from 'react';
 
 const App = () => {
-	return (
-		<div>
-			<h1>welcome to proshop</h1>
-		</div>
-	);
+	return <div className='App'>welcome to proshop</div>;
 };
 
 export default App;
-import React from 'react';
