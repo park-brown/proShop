@@ -1,35 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useStyles } from './Product.styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-
 import Button from '@material-ui/core/Button';
-import products from '../../../products';
+// import products from '../../../products';
+import axios from 'axios';
 import Rating from '@material-ui/lab/Rating';
 const ProductDetail = ({ match: { params } }) => {
-	const product = products.find((item) => item._id === params.id);
+	// const product = products.find((item) => item._id === params.id);
+	const [product, setProduct] = useState({});
+	useEffect(() => {
+		const fetchProduct = async () => {
+			const response = await axios.get(`/api/products/${params.id}`);
+			setProduct(response.data);
+		};
+
+		fetchProduct();
+	}, [params.id]);
 	const classes = useStyles();
+
 	return (
 		<div className={classes.root}>
 			<Paper className={classes.paper}>
-				<Grid container spacing={5}>
+				<Grid container spacing={6}>
 					<Grid item>
 						<img className={classes.img} alt='complex' src={product.image} />
 					</Grid>
 					<Grid item xs={12} sm container>
-						<Grid item xs container direction='column' spacing={4}>
+						<Grid
+							item
+							xs
+							container
+							direction='column'
+							spacing={4}
+							className={classes.container}>
 							<Grid item xs>
 								<Typography gutterBottom variant='subtitle1'>
 									{product.name}
 								</Typography>
-								<Typography variant='body2' gutterBottom>
-									<div className={classes.review}>
-										<Rating value={product.rating} readOnly />
-										<Typography className={classes.reviewNum}>
-											{product.numReviews} reviews
-										</Typography>
-									</div>
+								<Typography
+									className={classes.review}
+									variant='body2'
+									gutterBottom>
+									<Rating
+										value={product.rating ? product.rating : 0}
+										name='rating'
+									/>
+									{product.numReviews} reviews
 								</Typography>
 							</Grid>
 							<Grid item>
@@ -38,7 +56,7 @@ const ProductDetail = ({ match: { params } }) => {
 								</Typography>
 							</Grid>
 						</Grid>
-						<Grid item>
+						<Grid item className={classes.lastItem}>
 							<Typography variant='subtitle1'>
 								Price: {product.price}
 							</Typography>

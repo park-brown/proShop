@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import HomeCard from '../../HomeCard/HomeCard';
-import products from '../../../products';
+// import products from '../../../products';
+import axios from 'axios';
 import { useStyles } from './HomeScreen.styles';
 import Grid from '@material-ui/core/Grid';
 const HomeScreen = () => {
 	const classes = useStyles();
+	const [products, setProducts] = useState([]);
+	useEffect(() => {
+		const fetchProducts = async () => {
+			const response = await axios.get('/api/products');
+			setProducts(response.data);
+		};
+
+		fetchProducts();
+	}, []);
 	return (
 		<React.Fragment>
 			<CssBaseline />

@@ -7,12 +7,19 @@ export const useStyles = makeStyles((theme) => ({
 		marginBottom: '2rem',
 	},
 	paper: {
-		padding: theme.spacing(2),
 		margin: 'auto',
 		maxWidth: 500,
 	},
+	container: {
+		'& > *': {
+			marginLeft: theme.spacing(2),
+		},
+	},
+	lastItem: {
+		marginRight: theme.spacing(1),
+	},
 	img: {
-		margin: 'auto',
+		marginRight: theme.spacing(0.5),
 		display: 'block',
 		maxWidth: '100%',
 		maxHeight: '100%',
