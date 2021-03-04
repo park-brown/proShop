@@ -7,12 +7,16 @@ import CardMedia from '@material-ui/core/CardMedia';
 import { useStyles } from './HomeCard.styles';
 import Typography from '@material-ui/core/Typography';
 import Rate from '../Rate/Rate';
+import { Link } from 'react-router-dom';
 const HomeCard = ({ product }) => {
 	const classes = useStyles();
 
 	return (
 		<Grid item xs={12} sm={6} md={4} lg={3}>
-			<Card className={classes.root}>
+			<Card
+				className={classes.root}
+				component={Link}
+				to={`/product/${product._id}`}>
 				<CardActionArea>
 					<CardMedia
 						component='img'

@@ -9,6 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
+import { Link } from 'react-router-dom';
 // import { useTheme } from '@material-ui/core/styles';
 import { useStyles } from './header.styles';
 import { IconButton } from '@material-ui/core';
@@ -28,7 +29,9 @@ const Header = () => {
 		<div className={classes.root}>
 			<AppBar position='static'>
 				<Toolbar className={classes.toolbar}>
-					<Button className={classes.title}>proshop</Button>
+					<Button component={Link} to='/' className={classes.title}>
+						proshop
+					</Button>
 					<div className={classes.search}>
 						<div className={classes.searchIcon}>
 							<SearchIcon />
@@ -43,10 +46,18 @@ const Header = () => {
 						/>
 					</div>
 					<div className={classes.sectionDesktop}>
-						<Button className={classes.button} startIcon={<ShoppingCartIcon />}>
+						<Button
+							component={Link}
+							to='/cart'
+							className={classes.button}
+							startIcon={<ShoppingCartIcon />}>
 							cart
 						</Button>
-						<Button className={classes.button} startIcon={<PersonIcon />}>
+						<Button
+							component={Link}
+							to='/login'
+							className={classes.button}
+							startIcon={<PersonIcon />}>
 							sign in
 						</Button>
 					</div>
@@ -66,13 +77,19 @@ const Header = () => {
 							onClose={handleClose}>
 							<MenuItem onClick={handleClose}>
 								<Button
+									component={Link}
+									to='/cart'
 									className={classes.button}
 									startIcon={<ShoppingCartIcon />}>
 									cart
 								</Button>
 							</MenuItem>
 							<MenuItem onClick={handleClose}>
-								<Button className={classes.button} startIcon={<PersonIcon />}>
+								<Button
+									component={Link}
+									to='/login'
+									className={classes.button}
+									startIcon={<PersonIcon />}>
 									sign in
 								</Button>
 							</MenuItem>
