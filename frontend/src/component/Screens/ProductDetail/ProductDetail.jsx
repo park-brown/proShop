@@ -6,7 +6,7 @@ import { fetchProductDetails } from '../../../features/productListSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import ProductCard from './ProductCard';
 
-const ProductDetail = ({ match: { params } }) => {
+const ProductDetail = ({ match: { params }, history, match }) => {
 	// const product = products.find((item) => item._id === params.id);
 	const dispatch = useDispatch();
 	const productDetail = useSelector(
@@ -27,7 +27,7 @@ const ProductDetail = ({ match: { params } }) => {
 			</div>
 		);
 	} else if (status === 'succeeded') {
-		content = <ProductCard product={product} />;
+		content = <ProductCard product={product} history={history} match={match} />;
 	} else if (status === 'failed') {
 		content = <div>{error}</div>;
 	}

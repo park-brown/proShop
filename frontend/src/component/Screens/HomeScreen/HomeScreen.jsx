@@ -7,6 +7,7 @@ import HomeCard from '../../HomeCard/HomeCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../../../features/productListSlice';
 import { useStyles } from './HomeScreen.styles';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import Grid from '@material-ui/core/Grid';
 const HomeScreen = () => {
 	const status = useSelector((state) => state.product.products.status);
@@ -21,6 +22,7 @@ const HomeScreen = () => {
 		<React.Fragment>
 			<CssBaseline />
 			<Container maxWidth='md' className={classes.container}>
+				{status === 'loading' ? <LinearProgress /> : null}
 				<Typography variant='h3'>Latest Products</Typography>
 				<Grid container spacing={6} className={classes.grid}>
 					{products !== undefined
