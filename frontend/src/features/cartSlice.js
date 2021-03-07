@@ -28,7 +28,33 @@ export const addToCart = createAsyncThunk(
 export const cartSlice = createSlice({
 	name: 'cart',
 	initialState: initialState,
-	reducers: {},
+	reducers: {
+		increment_quantity: (state, action) => {
+			const id = action.payload;
+			const indexOf = state.cartItems.findIndex(
+				(item) => item.product_id === id,
+			);
+
+			if (
+				state.cartItems[indexOf].countInStock >
+				state.cartItems[indexOf].quantity
+			) {
+				state.cartItems[indexOf].quantity += 1;
+			} else return;
+		},
+		// decrement_quantity: (state, action) => {
+		// 	console.log(1);
+		// },
+		decrement_quantity: (state, action) => {
+			const id = action.payload;
+			const indexOf = state.cartItems.findIndex(
+				(item) => item.product_id === id,
+			);
+			if (state.cartItems[indexOf].quantity > 1) {
+				state.cartItems[indexOf].quantity -= 1;
+			} else return;
+		},
+	},
 	extraReducers: {
 		[addToCart.pending]: (state, action) => {
 			state.status = 'loading';
@@ -54,3 +80,4 @@ export const cartSlice = createSlice({
 });
 
 export default cartSlice.reducer;
+export const { increment_quantity, decrement_quantity } = cartSlice.actions;

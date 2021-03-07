@@ -7,27 +7,23 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import Divider from '@material-ui/core/Divider';
 import DeleteIcon from '@material-ui/icons/Delete';
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useStyles } from './cart.styles';
+import {
+	increment_quantity,
+	decrement_quantity,
+} from '../../../features/cartSlice';
 
 const CartList = ({ item }) => {
-	const [input, setInput] = useState(1);
-	const { countInStock } = item;
+	const dispatch = useDispatch();
 	const classes = useStyles();
-	const onIncrease = () => {
-		if (input < countInStock) {
-			setInput((input) => input + 1);
-		} else {
-			return;
-		}
-	};
-	const onDecrease = () => {
-		if (input < 2) {
-			return;
-		} else {
-			setInput((input) => input - 1);
-		}
-	};
+	const cartItems = useSelector((state) => state.cart.cartItems);
+	const { quantity } = cartItems.find(
+		(element) => element.product_id === item.product_id,
+	);
+	const handleChange = () => {};
+
 	return (
 		<React.Fragment>
 			<Grid container className={classes.grid_container} spacing={2}>
@@ -48,9 +44,23 @@ const CartList = ({ item }) => {
 				</Grid>
 				<Grid item xs={2}>
 					<div className={classes.quantity}>
-						<RemoveIcon onClick={onDecrease} />
-						<InputBase classes={{ input: classes.inputInput }} value={input} />
-						<AddIcon onClick={onIncrease} />
+						<RemoveIcon
+							className={classes.icon}
+							onClick={() => {
+								dispatch(decrement_quantity(item.product_id));
+							}}
+						/>
+						<InputBase
+							classes={{ input: classes.inputInput }}
+							value={quantity}
+							onChange={handleChange}
+						/>
+						<AddIcon
+							className={classes.icon}
+							onClick={() => {
+								dispatch(increment_quantity(item.product_id));
+							}}
+						/>
 					</div>
 				</Grid>
 				<Grid item xs={2}>

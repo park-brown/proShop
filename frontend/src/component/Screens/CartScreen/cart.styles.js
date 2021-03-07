@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
+	container: {
+		height: '80vh',
+	},
 	header: {
 		marginTop: '2rem',
 		marginBottom: '2rem',
@@ -25,6 +28,8 @@ export const useStyles = makeStyles((theme) => ({
 	image_Container: {
 		width: 150,
 		height: 150,
+		display: 'flex',
+		alignItems: 'center',
 		[theme.breakpoints.down('xs')]: {
 			width: 100,
 			height: 100,
@@ -37,6 +42,8 @@ export const useStyles = makeStyles((theme) => ({
 	},
 	quantity: {
 		display: 'flex',
+		alignItems: 'center',
+		marginLeft: theme.spacing(-2),
 	},
 	inputInput: {
 		border: '1px solid black',
@@ -45,5 +52,8 @@ export const useStyles = makeStyles((theme) => ({
 		[theme.breakpoints.down('xs')]: {
 			width: '3ch',
 		},
+	},
+	icon: {
+		cursor: 'pointer',
 	},
 }));
