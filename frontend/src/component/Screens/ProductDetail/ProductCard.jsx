@@ -13,7 +13,7 @@ const ProductCard = ({ product, history, match }) => {
 	const quantity = useSelector(
 		(state) => state.product.productDetails.product.countInStock,
 	);
-	const [qty, setQty] = useState(0);
+	const [qty, setQty] = useState(1);
 	const handleChange = (e) => {
 		setQty(e.target.value);
 	};
