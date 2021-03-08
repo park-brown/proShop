@@ -13,6 +13,7 @@ import { useStyles } from './cart.styles';
 import {
 	increment_quantity,
 	decrement_quantity,
+	removeItem,
 } from '../../../features/cartSlice';
 
 const CartList = ({ item }) => {
@@ -64,7 +65,11 @@ const CartList = ({ item }) => {
 					</div>
 				</Grid>
 				<Grid item xs={2}>
-					<IconButton aria-label='delete'>
+					<IconButton
+						aria-label='delete'
+						onClick={() => {
+							dispatch(removeItem(item.product_id));
+						}}>
 						<DeleteIcon />
 					</IconButton>
 				</Grid>

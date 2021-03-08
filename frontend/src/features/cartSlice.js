@@ -54,6 +54,14 @@ export const cartSlice = createSlice({
 				state.cartItems[indexOf].quantity -= 1;
 			} else return;
 		},
+		removeItem: (state, action) => {
+			return {
+				...state,
+				cartItems: state.cartItems.filter(
+					(item) => item.product_id !== action.payload,
+				),
+			};
+		},
 	},
 	extraReducers: {
 		[addToCart.pending]: (state, action) => {
@@ -80,4 +88,8 @@ export const cartSlice = createSlice({
 });
 
 export default cartSlice.reducer;
-export const { increment_quantity, decrement_quantity } = cartSlice.actions;
+export const {
+	increment_quantity,
+	decrement_quantity,
+	removeItem,
+} = cartSlice.actions;
