@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 
-const Footer = (props) => {
+export const Copyright = (props) => {
 	return (
 		<Typography variant='body2' color='textSecondary' align='center' {...props}>
 			{'Copyright © '}
@@ -14,5 +14,3 @@ const Footer = (props) => {
 		</Typography>
 	);
 };
-
-export default Footer;
