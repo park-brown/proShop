@@ -2,12 +2,14 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import productListReducer from '../features/productListSlice';
 import cartReducer from '../features/cartSlice';
 import userReducer from '../features/userSlice';
+import userRegisterReducer from '../features/userRegisterSlice';
 
 export default configureStore({
 	reducer: {
 		product: productListReducer,
 		cart: cartReducer,
 		userLogin: userReducer,
+		userRegister: userRegisterReducer,
 	},
 	middleware: getDefaultMiddleware({
 		serializableCheck: {

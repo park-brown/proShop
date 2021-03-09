@@ -6,9 +6,9 @@ const initialState = {
 	user: [],
 };
 
-export const userLogIn = createAsyncThunk(
-	'/user/userLogin',
-	async ({ email, password }, { rejectWithValue }) => {
+export const userRegister = createAsyncThunk(
+	'/user/userRegister',
+	async ({ name, email, password }, { rejectWithValue }) => {
 		try {
 			const config = {
 				headers: {
@@ -17,8 +17,8 @@ export const userLogIn = createAsyncThunk(
 			};
 
 			const { data } = await axios.post(
-				'/api/users/login',
-				{ email, password },
+				'/api/users',
+				{ name, email, password },
 				config,
 			);
 			return data;
@@ -27,8 +27,7 @@ export const userLogIn = createAsyncThunk(
 		}
 	},
 );
-
-const userSlice = createSlice({
+const userRegisterSlice = createSlice({
 	name: 'user',
 	initialState: initialState,
 	reducers: {
@@ -41,20 +40,19 @@ const userSlice = createSlice({
 		},
 	},
 	extraReducers: {
-		[userLogIn.pending]: (state, action) => {
+		[userRegister.pending]: (state, action) => {
 			state.status = 'loading';
 		},
-		[userLogIn.fulfilled]: (state, action) => {
+		[userRegister.fulfilled]: (state, action) => {
 			state.status = 'succeeded';
-			state.user.push(action.payload);
 		},
-		[userLogIn.rejected]: (state, action) => {
+		[userRegister.rejected]: (state, action) => {
 			state.status = 'failed';
 			state.error = 'rejected';
 		},
 	},
 });
 
-export default userSlice.reducer;
+export default userRegisterSlice.reducer;
 
-export const { user_logout } = userSlice.actions;
+export const { user_logout } = userRegisterSlice.actions;
