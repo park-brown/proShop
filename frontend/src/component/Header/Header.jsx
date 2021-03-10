@@ -89,7 +89,10 @@ const Header = () => {
 									anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
 									transformOrigin={{ vertical: 'top', horizontal: 'center' }}
 									onClose={handleloginClose}>
-									<MenuItem onClick={handleloginClose}>
+									<MenuItem
+										onClick={handleloginClose}
+										component={Link}
+										to='/profile'>
 										<ListItemIcon>
 											<AccountCircleIcon />
 										</ListItemIcon>
@@ -148,7 +151,7 @@ const Header = () => {
 								<MenuItem onClick={handleClose}>
 									<Button
 										component={Link}
-										to='/login'
+										to='/profile'
 										className={classes.button}
 										startIcon={<PersonIcon />}>
 										profile

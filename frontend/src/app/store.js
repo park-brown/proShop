@@ -3,6 +3,7 @@ import productListReducer from '../features/productListSlice';
 import cartReducer from '../features/cartSlice';
 import userReducer from '../features/userSlice';
 import userRegisterReducer from '../features/userRegisterSlice';
+import userUpdateReducer from '../features/userUpdateSlice';
 
 export default configureStore({
 	reducer: {
@@ -10,6 +11,7 @@ export default configureStore({
 		cart: cartReducer,
 		userLogin: userReducer,
 		userRegister: userRegisterReducer,
+		userUpdateProfile: userUpdateReducer,
 	},
 	middleware: getDefaultMiddleware({
 		serializableCheck: {

@@ -7,6 +7,7 @@ import HomeScreen from './component/Screens/HomeScreen/HomeScreen';
 import ProductDetail from './component/Screens/ProductDetail/ProductDetail.jsx';
 import CartScreen from './component/Screens/CartScreen/CartScreen';
 import Login from './component/Screens/LogIn/LogIn';
+import ProfileScreen from './component/Screens/ProfileScreen/ProfileScreen';
 const App = () => {
 	return (
 		<Router>
@@ -16,6 +17,7 @@ const App = () => {
 				<Route path='/cart/:id?' component={CartScreen} />
 				<Route path='/login' component={Login} />
 				<Route path='/register' component={Register} />
+				<Route path='/profile' component={ProfileScreen} />
 				<Route
 					path='/'
 					exact
