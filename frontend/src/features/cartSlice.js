@@ -4,6 +4,7 @@ const initialState = {
 	status: 'idle',
 	cartItems: [],
 	error: null,
+	shippingAddress: {},
 };
 export const addToCart = createAsyncThunk(
 	'cart/addToCart',
@@ -62,6 +63,9 @@ export const cartSlice = createSlice({
 				),
 			};
 		},
+		cart_save_shipping_address: (state, action) => {
+			state.shippingAddress = action.payload;
+		},
 	},
 	extraReducers: {
 		[addToCart.pending]: (state, action) => {
@@ -92,4 +96,5 @@ export const {
 	increment_quantity,
 	decrement_quantity,
 	removeItem,
+	cart_save_shipping_address,
 } = cartSlice.actions;

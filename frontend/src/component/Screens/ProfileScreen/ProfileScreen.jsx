@@ -84,7 +84,7 @@ const ProfileScreen = ({ history }) => {
 				setEmail(user[0].email);
 			}
 		}
-	}, [isUserExist, dispatch]);
+	}, [isUserExist, dispatch, history, user]);
 
 	return (
 		<Container maxWidth='sm' className={classes.container} component='main'>

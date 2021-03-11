@@ -8,6 +8,7 @@ import ProductDetail from './component/Screens/ProductDetail/ProductDetail.jsx';
 import CartScreen from './component/Screens/CartScreen/CartScreen';
 import Login from './component/Screens/LogIn/LogIn';
 import ProfileScreen from './component/Screens/ProfileScreen/ProfileScreen';
+import CheckOut from './component/Screens/CheckOut/CheckOutForm/CheckOut';
 const App = () => {
 	return (
 		<Router>
@@ -18,6 +19,7 @@ const App = () => {
 				<Route path='/login' component={Login} />
 				<Route path='/register' component={Register} />
 				<Route path='/profile' component={ProfileScreen} />
+				<Route path='/shipping' component={CheckOut} />
 				<Route
 					path='/'
 					exact
