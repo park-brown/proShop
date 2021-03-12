@@ -5,6 +5,12 @@ const initialState = {
 	cartItems: [],
 	error: null,
 	shippingAddress: {},
+	paymentDetails: [
+		{ name: 'Card type', detail: 'Visa' },
+		{ name: 'Card holder', detail: 'Mr John Doe' },
+		{ name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
+		{ name: 'Expiry date', detail: '04/2024' },
+	],
 };
 export const addToCart = createAsyncThunk(
 	'cart/addToCart',
@@ -66,6 +72,11 @@ export const cartSlice = createSlice({
 		cart_save_shipping_address: (state, action) => {
 			state.shippingAddress = action.payload;
 		},
+		cart_save_payment_details: (state, action) => {
+			state.paymentDetails.forEach((item, index) => {
+				item.detail = Object.values(action.payload)[index];
+			});
+		},
 	},
 	extraReducers: {
 		[addToCart.pending]: (state, action) => {
@@ -97,4 +108,5 @@ export const {
 	decrement_quantity,
 	removeItem,
 	cart_save_shipping_address,
+	cart_save_payment_details,
 } = cartSlice.actions;

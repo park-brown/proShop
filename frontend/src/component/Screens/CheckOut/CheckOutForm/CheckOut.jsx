@@ -12,7 +12,10 @@ import AddressForm from '../AddressForm/AddressForm';
 import PaymentForm from '../PaymentForm/PaymentForm';
 import Review from '../Review/Review';
 import { useDispatch, useSelector } from 'react-redux';
-import { cart_save_shipping_address } from '../../../../features/cartSlice';
+import {
+	cart_save_shipping_address,
+	cart_save_payment_details,
+} from '../../../../features/cartSlice';
 const useStyles = makeStyles((theme) => ({
 	main: {
 		marginBottom: theme.spacing(4),
@@ -50,6 +53,10 @@ export default function Checkout({ history }) {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.userLogin.user);
 
+	const loginUserName = user[0].name;
+	const first_name = loginUserName.split(' ')[0];
+	const last_name = loginUserName.split(' ')[1];
+
 	const isUserSignIn = Boolean(user.length);
 
 	const [activeStep, setActiveStep] = React.useState(0);
@@ -65,9 +72,11 @@ export default function Checkout({ history }) {
 	const getStepContent = (step) => {
 		switch (step) {
 			case 0:
-				return <AddressForm onChange={handleChange} />;
+				return <AddressForm onChange={handleChange} value={value} />;
 			case 1:
-				return <PaymentForm />;
+				return (
+					<PaymentForm value={payment_details} onChange={handlePaymentChange} />
+				);
 			case 2:
 				return <Review />;
 			default:
@@ -75,9 +84,11 @@ export default function Checkout({ history }) {
 		}
 	};
 
+	/*keep track of the values of address form */
+
 	const [value, setVaule] = React.useState({
-		firstName: '',
-		lastName: '',
+		firstName: first_name,
+		lastName: last_name,
 		address1: '',
 		address2: '',
 		city: '',
@@ -92,6 +103,20 @@ export default function Checkout({ history }) {
 			[event.target.name]: event.target.value,
 		});
 	};
+	/* keep  track of payment form */
+
+	const [payment_details, setPaymentDetails] = React.useState({
+		cardName: '',
+		cardNumber: null,
+		expireDate: '',
+		cvv: '',
+	});
+	const handlePaymentChange = (event) => {
+		setPaymentDetails({
+			...payment_details,
+			[event.target.name]: event.target.value,
+		});
+	};
 
 	const handleNext = () => {
 		setActiveStep(activeStep + 1);
@@ -99,6 +124,11 @@ export default function Checkout({ history }) {
 		switch (activeStep) {
 			case 0:
 				dispatch(cart_save_shipping_address(value));
+				break;
+			case 1:
+				dispatch(cart_save_payment_details(payment_details));
+				break;
+			case 2:
 				break;
 			default:
 				return;

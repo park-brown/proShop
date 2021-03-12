@@ -5,7 +5,17 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-export default function AddressForm({ onChange }) {
+export default function AddressForm({ onChange, value }) {
+	const {
+		firstName,
+		lastName,
+		address1,
+		address2,
+		city,
+		state,
+		zip,
+		country,
+	} = value;
 	return (
 		<React.Fragment>
 			<Typography variant='h6' gutterBottom>
@@ -19,6 +29,8 @@ export default function AddressForm({ onChange }) {
 						name='firstName'
 						label='First name'
 						fullWidth
+						InputLabelProps={{ shrink: true }}
+						value={firstName}
 						onChange={onChange}
 						autoComplete='given-name'
 						variant='standard'
@@ -30,7 +42,9 @@ export default function AddressForm({ onChange }) {
 						id='lastName'
 						name='lastName'
 						label='Last name'
+						value={lastName}
 						fullWidth
+						InputLabelProps={{ shrink: true }}
 						onChange={onChange}
 						autoComplete='family-name'
 						variant='standard'
@@ -43,6 +57,7 @@ export default function AddressForm({ onChange }) {
 						name='address1'
 						label='Address line 1'
 						fullWidth
+						value={address1}
 						onChange={onChange}
 						autoComplete='shipping address-line1'
 						variant='standard'
@@ -54,6 +69,7 @@ export default function AddressForm({ onChange }) {
 						name='address2'
 						label='Address line 2'
 						fullWidth
+						value={address2}
 						onChange={onChange}
 						autoComplete='shipping address-line2'
 						variant='standard'
@@ -66,6 +82,7 @@ export default function AddressForm({ onChange }) {
 						name='city'
 						label='City'
 						fullWidth
+						value={city}
 						onChange={onChange}
 						autoComplete='shipping address-level2'
 						variant='standard'
@@ -77,6 +94,7 @@ export default function AddressForm({ onChange }) {
 						name='state'
 						label='State/Province/Region'
 						fullWidth
+						value={state}
 						onChange={onChange}
 						variant='standard'
 					/>
@@ -88,6 +106,7 @@ export default function AddressForm({ onChange }) {
 						name='zip'
 						label='Zip / Postal code'
 						fullWidth
+						value={zip}
 						onChange={onChange}
 						autoComplete='shipping postal-code'
 						variant='standard'
@@ -100,6 +119,7 @@ export default function AddressForm({ onChange }) {
 						name='country'
 						label='Country'
 						fullWidth
+						value={country}
 						onChange={onChange}
 						autoComplete='shipping country'
 						variant='standard'

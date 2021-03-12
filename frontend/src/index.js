@@ -3,15 +3,20 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import store from './app/store';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
 import * as serviceWorker from './serviceWorker';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
 
+let persistor = persistStore(store);
 ReactDOM.render(
 	<Provider store={store}>
-		<ThemeProvider theme={theme}>
-			<App />
-		</ThemeProvider>
+		<PersistGate persistor={persistor}>
+			<ThemeProvider theme={theme}>
+				<App />
+			</ThemeProvider>
+		</PersistGate>
 	</Provider>,
 	document.getElementById('root'),
 );

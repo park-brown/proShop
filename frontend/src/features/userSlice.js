@@ -46,7 +46,9 @@ const userSlice = createSlice({
 		},
 		[userLogIn.fulfilled]: (state, action) => {
 			state.status = 'succeeded';
-			state.user.push(action.payload);
+			if (state.user.length < 1) {
+				state.user.push(action.payload);
+			} else return;
 		},
 		[userLogIn.rejected]: (state, action) => {
 			state.status = 'failed';
